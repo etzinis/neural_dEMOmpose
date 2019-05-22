@@ -1,6 +1,12 @@
-import torch
+"""!
+@brief Encoder layer definition as in the proposed Tasnet model
+
+@author Efthymios Tzinis {etzinis2@illinois.edu}
+@copyright University of Illinois at Urbana Champaign
+"""
 import torch.nn as nn
 import torch.nn.functional as F
+
 
 class EncodingLayer(nn.Module):
     '''
@@ -16,7 +22,10 @@ class EncodingLayer(nn.Module):
     '''
     def __init__(self, enc_channels, kernel_size):
         super().__init__()
-        self.conv = nn.Conv1d(1, enc_channels, kernel_size, stride=kernel_size//2)
+        self.conv = nn.Conv1d(1,
+                              enc_channels,
+                              kernel_size,
+                              stride=kernel_size//2)
     
     def forward(self, x):
         w = F.relu(self.conv(x))
